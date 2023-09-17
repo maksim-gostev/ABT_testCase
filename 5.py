@@ -7,7 +7,9 @@ path = './test'
 
 def task3(path):
     count = 0
-    regex = re.compile(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+")
+    regex = re.compile(
+        r'(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))'
+    )
     res = []
     for root, dirs, files in os.walk(path):
         for file in files:
@@ -36,7 +38,9 @@ def task1(path):
 
 def task2(path):
     # в папке test найти все email адреса записанные в файлы
-    regex = re.compile(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+")
+    regex = re.compile(
+        r'(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))'
+    )
     res = []
     for root, dirs, files in os.walk(path):
         for file in files:

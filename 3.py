@@ -15,6 +15,10 @@ class SharedState:
     async def modify(self, value: int):
         await asyncio.sleep(random.randint(1, 2))
         self.items.append(value)
+        """
+        асинг для меня новое но готов погрузится 
+        """
+        self.items = sorted(self.items)
 
 
 # Имитация сервера, обрабатывающего запросы

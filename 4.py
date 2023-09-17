@@ -1,40 +1,43 @@
-import sys
 import json
+
+import structures
 
 filename = 'test.json'
 
 
-def count_questions(data: dict):
+def count_questions(data: structures.Game):
     # вывести количество вопросов (questions)
     result = 0
-    for question in data["game"]["rounds"]:
-        result += len(question["questions"])
+    for question in data.rounds:
+        result += len(question.questions)
     return result
 
 
-def print_right_answers(data: dict):
+def print_right_answers(data: structures.Game):
     # вывести все правильные ответы (correct_answer)
     result = []
-    for questions in data["game"]["rounds"]:
-        for question in questions["questions"]:
-            result.append(question["correct_answer"])
+    for questions in data.rounds:
+        for question in questions.questions:
+            result.append(question.correct_answer)
     return result
 
 
-def print_max_answer_time(data: dict):
+def print_max_answer_time(data: structures.Game):
     # вывести максимальное время ответа (time_to_answer)
     result = []
-    for question in data["game"]["rounds"][1]["questions"]:
-        result.append(question["time_to_answer"])
+    for question in data.rounds:
+        for time_to_answer in question.questions:
+            if time_to_answer.time_to_answer:
+                result.append(time_to_answer.time_to_answer)
     return sorted(result)[-1]
 
 
 def main(filename):
     with open(filename) as f:
-        data = json.load(f)  # загрузить данные из test.json файла
-    print(count_questions(data))
-    print(print_right_answers(data))
-    print(print_max_answer_time(data))
+        data = json.load(f)
+    print(count_questions(structures.Game(**data["game"])))
+    print(print_right_answers(structures.Game(**data["game"])))
+    print(print_max_answer_time(structures.Game(**data["game"])))
 
 
 if __name__ == '__main__':

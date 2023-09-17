@@ -1,7 +1,7 @@
 {
   "game": {
     "name": "game_name",
-    "game_settings": {
+    "game_settings" : {
       "tactics": {
         "remove_answer": 1111111111,
         "one_for_all": 1111111111,
@@ -48,7 +48,7 @@
             "team_bet": 5
           }
         },
-        "questions": [
+        "questions":[
           {
             "type": "text",
             "question": "some_question",

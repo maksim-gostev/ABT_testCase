@@ -3,6 +3,7 @@ from functools import wraps
 
 def cls_method_decorator(param: int):
     def func_decorator(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
             res = args[0]
             res.increment_var(param)
