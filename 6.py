@@ -32,11 +32,13 @@ def check_chain(filepath: Path) -> bool:
     return status_code == 0
 
 
-def solution(response: Response) -> Path:
+def solution(response: Response) -> str:
     filepath = 'solution6.json'
     res = {}
+    res['items'] = []
     sort_respons = sorted(response.items, key=lambda x: x.id)
-    res['items'] = sort_respons
+    for x in sort_respons:
+        res['items'].append(x.__dict__)
     res['total'] = len(sort_respons)
     with open(filepath, 'w') as f:
         json.dump(res, f)
