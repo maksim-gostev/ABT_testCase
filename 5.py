@@ -7,9 +7,7 @@ path = './test'
 
 def task3(path):
     count = 0
-    regex = re.compile(
-        r'(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))'
-    )
+    regex = re.compile(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+")
     res = []
     for root, dirs, files in os.walk(path):
         for file in files:
@@ -31,16 +29,14 @@ def task1(path):
     count = 0
     for root, dirs, files in os.walk(path):
         for file in files:
-            if file.split('.')[0] == "filenames":
+            if file.startswith("filenames."):
                 count += 1
     return count
 
 
 def task2(path):
     # в папке test найти все email адреса записанные в файлы
-    regex = re.compile(
-        r'(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))'
-    )
+    regex = re.compile(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+")
     res = []
     for root, dirs, files in os.walk(path):
         for file in files:
@@ -59,7 +55,7 @@ def task2(path):
 def main(path):
     print(task1(path))
     task2(path)
-    task3(path)
+    # task3(path)
     # дополнительно: придумать над механизмом оптимизации 2-й задачи (параллелизация)
 
 
